@@ -6,6 +6,7 @@ export default class FetchData extends React.Component{
         this.state={
             searchWord:'',
             render: false,
+            drinkId:null,
         }
         
     }
@@ -24,7 +25,7 @@ export default class FetchData extends React.Component{
     }
 
     handleFetchData = () => {
-        const apiURL=`http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${this.state.searchWord}`;
+        const apiURL= 'http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail';
         console.log (apiURL)
         return fetch(apiURL)
              .then(r=>r.json())
@@ -34,9 +35,10 @@ export default class FetchData extends React.Component{
                  if ((!cities.includes(this.state.cityName))){
                    
                     this.setState({
-                        alertDisplay: true,
+                        
                     })
-                }else{    
+                }else{ 
+                    const apiURL= `http://www.thecocktaildb.com/api/json/v1/1/lookup.php?i${drinkId}`;  
                 return fetch()
                    .then(r=>r.json())
                    .then(data=>{
